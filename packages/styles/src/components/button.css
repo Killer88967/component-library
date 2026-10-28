@@ -1,0 +1,94 @@
+.cl-button {
+  --_bg: var(--cl-primary);
+  --_bg-hover: color-mix(in oklch, var(--cl-primary) 88%, var(--cl-foreground));
+  --_fg: var(--cl-primary-foreground);
+  --_border: transparent;
+  --_h: calc(var(--cl-spacing) * 10);
+  --_px: calc(var(--cl-spacing) * 4);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--cl-spacing) * 2);
+  height: var(--_h);
+  padding-inline: var(--_px);
+  border: 1px solid var(--_border);
+  border-radius: var(--cl-radius-md);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--cl-duration-fast) var(--cl-ease-standard),
+    border-color var(--cl-duration-fast) var(--cl-ease-standard),
+    color var(--cl-duration-fast) var(--cl-ease-standard),
+    transform var(--cl-duration-fast) var(--cl-ease-standard);
+}
+
+.cl-button:hover {
+  background-color: var(--_bg-hover);
+}
+
+.cl-button:active {
+  transform: translateY(1px);
+}
+
+.cl-button:focus-visible {
+  outline: 2px solid var(--cl-ring);
+  outline-offset: 2px;
+}
+
+.cl-button:disabled,
+.cl-button[aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Variants */
+.cl-button[data-variant="secondary"] {
+  --_bg: var(--cl-secondary);
+  --_bg-hover: color-mix(in oklch, var(--cl-secondary) 85%, var(--cl-foreground));
+  --_fg: var(--cl-secondary-foreground);
+}
+
+.cl-button[data-variant="outline"] {
+  --_bg: transparent;
+  --_bg-hover: var(--cl-muted);
+  --_fg: var(--cl-foreground);
+  --_border: var(--cl-border);
+}
+
+.cl-button[data-variant="ghost"] {
+  --_bg: transparent;
+  --_bg-hover: var(--cl-muted);
+  --_fg: var(--cl-foreground);
+}
+
+.cl-button[data-variant="danger"] {
+  --_bg: var(--cl-danger);
+  --_bg-hover: color-mix(in oklch, var(--cl-danger) 88%, var(--cl-foreground));
+  --_fg: var(--cl-danger-foreground);
+}
+
+/* Sizes */
+.cl-button[data-size="sm"] {
+  --_h: calc(var(--cl-spacing) * 8);
+  --_px: calc(var(--cl-spacing) * 3);
+  font-size: 0.8125rem;
+}
+
+.cl-button[data-size="lg"] {
+  --_h: calc(var(--cl-spacing) * 12);
+  --_px: calc(var(--cl-spacing) * 6);
+  font-size: 1rem;
+}
+
+.cl-button[data-size="icon"] {
+  --_px: 0;
+  width: var(--_h);
+}

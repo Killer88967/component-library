@@ -220,6 +220,15 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
+  packages/styles:
+    dependencies:
+      "@component-library/tokens":
+        specifier: workspace:*
+        version: link:../tokens
+      tailwindcss:
+        specifier: ^4
+        version: 4.3.3
+
   packages/tokens:
     devDependencies:
       "@types/node":
@@ -527,6 +536,12 @@ packages:
     engines: { node: ">=14" }
     hasBin: true
 
+  tailwindcss@4.3.3:
+    resolution:
+      {
+        integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==,
+      }
+
   turbo@2.11.10:
     resolution:
       {
@@ -636,6 +651,8 @@ snapshots:
       prettier: 3.9.10
 
   prettier@3.9.10: {}
+
+  tailwindcss@4.3.3: {}
 
   turbo@2.11.10:
     optionalDependencies:

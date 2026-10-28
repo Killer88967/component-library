@@ -1,0 +1,30 @@
+{
+  "name": "@component-library/styles",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.css",
+    "./tailwind.css": "./src/tailwind.css",
+    "./base.css": "./src/base.css",
+    "./utilities.css": "./src/utilities.css",
+    "./components/*": "./src/components/*"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@component-library/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}
