@@ -20,7 +20,7 @@
           "type": "git",
           "style": "plain",
           "foreground": "#98C379",
-          "template": " ({{ .HEAD }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }}{{ if gt .Ahead 0 }} ^{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} v{{ .Behind }}{{ end }})",
+          "template": " ({{ .HEAD }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }}{{ if gt .Behind 0 }} ↓{{ .Behind }}{{ end }}{{ if gt .Ahead 0 }} ↑{{ .Ahead }}{{ end }})",
           "options": {
             "branch_icon": "",
             "branch_ahead_icon": "",
@@ -92,7 +92,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#61AFEF",
-          "template": " > "
+          "template": " >"
         }
       ]
     }
