@@ -1,4 +1,5 @@
 import { tokens } from "@component-library/tokens";
+import { Button } from "@component-library/ui";
 import { ThemeToggle } from "./theme-toggle";
 
 const variants = ["primary", "secondary", "outline", "ghost", "danger"] as const;
@@ -19,30 +20,18 @@ export default function Home() {
         <h2 className="text-xl font-semibold">Button</h2>
         <div className="cl-cluster">
           {variants.map((variant) => (
-            <button
-              key={variant}
-              type="button"
-              className="cl-button capitalize"
-              data-variant={variant === "primary" ? undefined : variant}
-            >
+            <Button key={variant} variant={variant} className="capitalize">
               {variant}
-            </button>
+            </Button>
           ))}
         </div>
         <div className="cl-cluster">
           {sizes.map((size) => (
-            <button
-              key={size}
-              type="button"
-              className="cl-button"
-              data-size={size === "md" ? undefined : size}
-            >
+            <Button key={size} size={size}>
               Size {size}
-            </button>
+            </Button>
           ))}
-          <button type="button" className="cl-button" disabled>
-            Disabled
-          </button>
+          <Button disabled>Disabled</Button>
         </div>
       </section>
 

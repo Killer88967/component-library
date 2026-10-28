@@ -12,6 +12,7 @@
   "dependencies": {
     "@component-library/styles": "workspace:*",
     "@component-library/tokens": "workspace:*",
+    "@component-library/ui": "workspace:*",
     "next": "^16.4.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

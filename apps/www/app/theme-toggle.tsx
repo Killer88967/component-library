@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@component-library/ui";
+
 export function ThemeToggle() {
   function toggle() {
     const root = document.documentElement;
@@ -10,8 +12,8 @@ export function ThemeToggle() {
   }
 
   return (
-    <button type="button" className="cl-button" data-variant="outline" onClick={toggle}>
+    <Button variant="outline" onClick={toggle}>
       Toggle theme
-    </button>
+    </Button>
   );
 }

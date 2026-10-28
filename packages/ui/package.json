@@ -1,0 +1,23 @@
+{
+  "name": "@component-library/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@component-library/styles": "workspace:*",
+    "@component-library/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19"
+  }
+}
