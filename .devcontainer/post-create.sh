@@ -37,7 +37,7 @@ fi
 
 # Generate a Zsh configuration that points to this workspace's theme.
 {
-  printf "export FRAMEWEAVE_THEME='%s'\n" "$THEME_FILE"
+  printf "export COMPONENT_LIBRARY_THEME='%s'\n" "$THEME_FILE"
 
   cat <<'ZSH_CONFIG'
 autoload -Uz add-zsh-hook
@@ -45,23 +45,23 @@ autoload -Uz add-zsh-hook
 component_library_detect_package_manager() {
   local dir="$PWD"
 
-  export FRAMEWEAVE_PM=""
+  export COMPONENT_LIBRARY_PM=""
 
   while [[ "$dir" != "/" ]]; do
     if [[ -f "$dir/pnpm-lock.yaml" ]]; then
-      export FRAMEWEAVE_PM="pnpm"
+      export COMPONENT_LIBRARY_PM="pnpm"
       return
     elif [[ -f "$dir/bun.lock" || -f "$dir/bun.lockb" ]]; then
-      export FRAMEWEAVE_PM="bun"
+      export COMPONENT_LIBRARY_PM="bun"
       return
     elif [[ -f "$dir/yarn.lock" ]]; then
-      export FRAMEWEAVE_PM="yarn"
+      export COMPONENT_LIBRARY_PM="yarn"
       return
     elif [[ -f "$dir/package-lock.json" || -f "$dir/npm-shrinkwrap.json" ]]; then
-      export FRAMEWEAVE_PM="npm"
+      export COMPONENT_LIBRARY_PM="npm"
       return
     elif [[ -f "$dir/deno.lock" ]]; then
-      export FRAMEWEAVE_PM="deno"
+      export COMPONENT_LIBRARY_PM="deno"
       return
     fi
 
@@ -75,8 +75,8 @@ component_library_detect_package_manager
 
 # Load the repository-local theme when Oh My Posh is installed.
 if command -v oh-my-posh >/dev/null 2>&1 &&
-  [[ -f "$FRAMEWEAVE_THEME" ]]; then
-  eval "$(oh-my-posh init zsh --config "$FRAMEWEAVE_THEME")"
+  [[ -f "$COMPONENT_LIBRARY_THEME" ]]; then
+  eval "$(oh-my-posh init zsh --config "$COMPONENT_LIBRARY_THEME")"
 fi
 ZSH_CONFIG
 } > "$ZSH_INIT_FILE"
@@ -99,7 +99,7 @@ if [ -f "package.json" ]; then
 fi
 
 echo
-echo "Frameweave development environment is ready."
+echo "Component Library development environment is ready."
 echo "Node: $(node --version)"
 echo "pnpm: $(pnpm --version)"
 echo "pnpm global bin: $(pnpm config get global-bin-dir)"
