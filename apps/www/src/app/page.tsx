@@ -1,6 +1,6 @@
 import { tokens } from "@component-library/tokens";
 import { Button } from "@component-library/ui";
-import { ThemeToggle } from "./theme-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const variants = ["primary", "secondary", "outline", "ghost", "danger"] as const;
 const sizes = ["sm", "md", "lg"] as const;

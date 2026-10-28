@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "Button",
+  description: "Triggers an action, with five variants and four sizes.",
+};
+
+<ComponentPreview name="button-demo" />
+
+## Usage
+
+```tsx
+import { Button } from "@component-library/ui";
+```
+
+## Variants
+
+<ComponentPreview name="button-variants" />
+
+## Sizes
+
+<ComponentPreview name="button-sizes" />
+
+## CSS only
+
+The same styles work without React. Set the variant and size with data attributes:
+
+```html
+<button class="cl-button" data-variant="outline" data-size="sm">Button</button>
+```
