@@ -37,7 +37,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#C678DD",
-          "template": "{{ if .Env.FRAMEWEAVE_PM }} [{{ .Env.FRAMEWEAVE_PM }}]{{ end }}"
+          "template": "{{ if .Env.COMPONENT_LIBRARY_PM }} [{{ .Env.COMPONENT_LIBRARY_PM }}]{{ end }}"
         },
         {
           "type": "node",
