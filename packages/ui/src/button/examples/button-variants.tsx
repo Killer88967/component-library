@@ -1,3 +1,4 @@
+import { SquareArrowOutUpRightIcon } from "lucide-react";
 import { Button } from "@component-library/ui";
 
 export default function ButtonVariants() {
@@ -8,7 +9,9 @@ export default function ButtonVariants() {
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="destructive">Destructive</Button>
-      <Button variant="link">Link</Button>
+      <Button variant="link">
+        Link <SquareArrowOutUpRightIcon />
+      </Button>
     </div>
   );
 }
