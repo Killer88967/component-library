@@ -1,0 +1,36 @@
+/*
+ * CSS-only Kbd. Matches the shadcn/ui Kbd (MIT, "nova" style).
+ * <kbd class="cl-kbd">⌘</kbd>
+ * <kbd class="cl-kbd-group"><kbd class="cl-kbd">Ctrl</kbd><kbd class="cl-kbd">K</kbd></kbd>
+ */
+.cl-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: fit-content;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding-inline: 0.25rem;
+  border-radius: calc(var(--radius) * 0.6);
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cl-kbd svg:not([class*="size-"]) {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.cl-kbd-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}

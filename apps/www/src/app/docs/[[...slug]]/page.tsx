@@ -24,7 +24,7 @@ export default async function DocPage({ params }: PageProps<"/docs/[[...slug]]">
     <>
       <h1 className="text-3xl font-semibold tracking-tight">{metadata.title}</h1>
       {metadata.description && (
-        <p className="text-muted-foreground mt-2 text-lg">{metadata.description}</p>
+        <p className="mt-2 text-lg text-muted-foreground">{metadata.description}</p>
       )}
       <Content />
     </>

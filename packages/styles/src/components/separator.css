@@ -1,0 +1,17 @@
+/*
+ * CSS-only Separator. Matches the shadcn/ui Separator (MIT, "nova" style).
+ * <div class="cl-separator" role="separator"></div>
+ * <div class="cl-separator" role="separator" data-orientation="vertical"></div>
+ */
+.cl-separator {
+  flex-shrink: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.cl-separator[data-orientation="vertical"] {
+  width: 1px;
+  height: auto;
+  align-self: stretch;
+}

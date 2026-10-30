@@ -4,7 +4,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="bg-background/80 sticky top-0 z-50 border-b backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
       <div className="cl-container flex h-14 items-center gap-2">
         <Link href="/" className="mr-4 font-semibold">
           Component Library

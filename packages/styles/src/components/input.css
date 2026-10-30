@@ -1,0 +1,74 @@
+/*
+ * CSS-only Input. Matches the shadcn/ui Input (MIT, "nova" style).
+ * <input class="cl-input" type="email" placeholder="Email">
+ * Mark errors with aria-invalid="true".
+ */
+.cl-input {
+  width: 100%;
+  min-width: 0;
+  height: 2rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  outline: none;
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.cl-input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.cl-input::file-selector-button {
+  display: inline-flex;
+  height: 1.5rem;
+  border: 0;
+  background-color: transparent;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.cl-input:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.cl-input:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: color-mix(in oklab, var(--input) 50%, transparent);
+}
+
+.cl-input[aria-invalid="true"] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+
+@media (width >= 48rem) {
+  .cl-input {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+:where(.dark, [data-theme="dark"]) .cl-input {
+  background-color: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-input:disabled {
+  background-color: color-mix(in oklab, var(--input) 80%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-input[aria-invalid="true"] {
+  border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}

@@ -9,7 +9,7 @@ export default function Home() {
     <main className="cl-container py-16">
       <section className="flex flex-col items-start gap-4 py-12">
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Component Library</h1>
-        <p className="text-muted-foreground max-w-2xl text-lg">
+        <p className="max-w-2xl text-lg text-muted-foreground">
           Components, CSS and TypeScript utilities for building websites. Built on shadcn/ui, with
           more on top.
         </p>
@@ -29,7 +29,7 @@ export default function Home() {
           {colors.map((name) => (
             <div key={name} className="space-y-1.5">
               <div className="h-12 rounded-md border" style={{ background: `var(--${name})` }} />
-              <p className="text-muted-foreground font-mono text-xs">{name}</p>
+              <p className="font-mono text-xs text-muted-foreground">{name}</p>
             </div>
           ))}
         </div>

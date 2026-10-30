@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Card",
+  description: "Displays a card with header, content, and footer.",
+};
+
+<ComponentPreview name="card-demo" />
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@component-library/ui";
+```
+
+## Size
+
+<ComponentPreview name="card-small" />
+
+## CSS only
+
+```html
+<div class="cl-card">
+  <div class="cl-card-header">
+    <div class="cl-card-title">Card Title</div>
+    <div class="cl-card-description">Card Description</div>
+  </div>
+  <div class="cl-card-content">Content</div>
+  <div class="cl-card-footer">Footer</div>
+</div>
+```
+
+Add `data-size="sm"` to the card for tighter spacing, and `data-border` to the header for a divider under it.

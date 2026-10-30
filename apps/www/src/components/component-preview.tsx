@@ -19,12 +19,12 @@ export async function ComponentPreview({ name }: { name: string }) {
   const { Component } = example;
 
   return (
-    <div className="border-border my-6 overflow-hidden rounded-lg border">
-      <div className="bg-background flex min-h-40 items-center justify-center p-8">
+    <div className="my-6 overflow-hidden rounded-lg border border-border">
+      <div className="flex min-h-40 items-center justify-center bg-background p-8">
         <Component />
       </div>
       <div
-        className="border-border border-t text-sm [&_pre]:overflow-x-auto [&_pre]:p-4"
+        className="border-t border-border text-sm [&_pre]:overflow-x-auto [&_pre]:p-4"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

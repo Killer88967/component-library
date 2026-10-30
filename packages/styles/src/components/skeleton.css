@@ -1,0 +1,15 @@
+/*
+ * CSS-only Skeleton. Matches the shadcn/ui Skeleton (MIT, "nova" style).
+ * <div class="cl-skeleton" style="width: 12rem; height: 1rem"></div>
+ */
+@keyframes cl-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.cl-skeleton {
+  border-radius: calc(var(--radius) * 0.8);
+  background-color: var(--muted);
+  animation: cl-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

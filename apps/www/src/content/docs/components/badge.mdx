@@ -1,0 +1,23 @@
+export const metadata = {
+  title: "Badge",
+  description: "Displays a badge or a component that looks like a badge.",
+};
+
+<ComponentPreview name="badge-demo" />
+
+## Usage
+
+```tsx
+import { Badge } from "@component-library/ui";
+
+<Badge variant="outline">Badge</Badge>;
+```
+
+Use `asChild` to make a link look like a badge. Links also get a hover state.
+
+## CSS only
+
+```html
+<span class="cl-badge" data-variant="secondary">Badge</span>
+<a class="cl-badge" href="/changelog">New</a>
+```

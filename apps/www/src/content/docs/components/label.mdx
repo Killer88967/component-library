@@ -1,0 +1,22 @@
+export const metadata = {
+  title: "Label",
+  description: "Renders an accessible label associated with a control.",
+};
+
+<ComponentPreview name="label-demo" />
+
+## Usage
+
+```tsx
+import { Label } from "@component-library/ui";
+
+<Label htmlFor="email">Email</Label>;
+```
+
+## CSS only
+
+```html
+<label class="cl-label" for="email">Email</label>
+```
+
+The label dims when a disabled input comes right before it, or when it sits inside an element with `data-disabled="true"`.

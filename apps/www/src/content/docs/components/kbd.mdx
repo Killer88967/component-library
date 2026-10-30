@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Kbd",
+  description: "Displays a keyboard key or shortcut.",
+};
+
+<ComponentPreview name="kbd-demo" />
+
+## Usage
+
+```tsx
+import { Kbd, KbdGroup } from "@component-library/ui";
+
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>K</Kbd>
+</KbdGroup>;
+```
+
+## CSS only
+
+```html
+<kbd class="cl-kbd-group">
+  <kbd class="cl-kbd">Ctrl</kbd>
+  <kbd class="cl-kbd">K</kbd>
+</kbd>
+```

@@ -3,5 +3,5 @@
 @import "shadcn/tailwind.css";
 @import "@component-library/tokens/theme.css";
 @import "./base.css" layer(base);
-@import "./components/button.css" layer(components);
+@import "./components/index.css" layer(components);
 @import "./utilities.css" layer(utilities);

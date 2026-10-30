@@ -1,0 +1,123 @@
+/*
+ * CSS-only Badge. Matches the shadcn/ui Badge (MIT, "nova" style).
+ * <span class="cl-badge" data-variant="secondary">Badge</span>
+ * Variants: default | secondary | destructive | outline | ghost | link
+ * Use an <a class="cl-badge"> to get the hover state.
+ */
+.cl-badge {
+  --_ring: color-mix(in oklab, var(--ring) 50%, transparent);
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: fit-content;
+  height: 1.25rem;
+  overflow: hidden;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.cl-badge:has([data-icon="inline-start"]) {
+  padding-left: 0.375rem;
+}
+
+.cl-badge:has([data-icon="inline-end"]) {
+  padding-right: 0.375rem;
+}
+
+.cl-badge > svg {
+  pointer-events: none;
+  width: 0.75rem !important;
+  height: 0.75rem !important;
+}
+
+/* Variants */
+.cl-badge:not([data-variant]),
+.cl-badge[data-variant="default"] {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.cl-badge[data-variant="secondary"] {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.cl-badge[data-variant="destructive"] {
+  --_ring: color-mix(in oklab, var(--destructive) 20%, transparent);
+  background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+  color: var(--destructive);
+}
+
+.cl-badge[data-variant="outline"] {
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.cl-badge[data-variant="link"] {
+  color: var(--primary);
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  a.cl-badge:not([data-variant]):hover,
+  a.cl-badge[data-variant="default"]:hover {
+    background-color: color-mix(in oklab, var(--primary) 80%, transparent);
+  }
+
+  a.cl-badge[data-variant="secondary"]:hover {
+    background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
+  }
+
+  a.cl-badge[data-variant="destructive"]:hover {
+    background-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+  }
+
+  a.cl-badge[data-variant="outline"]:hover,
+  .cl-badge[data-variant="ghost"]:hover {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+  }
+
+  .cl-badge[data-variant="link"]:hover {
+    text-decoration-line: underline;
+  }
+}
+
+/* Dark mode */
+:where(.dark, [data-theme="dark"]) .cl-badge[data-variant="destructive"] {
+  --_ring: color-mix(in oklab, var(--destructive) 40%, transparent);
+  background-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+
+@media (hover: hover) {
+  :where(.dark, [data-theme="dark"]) .cl-badge[data-variant="ghost"]:hover {
+    background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+  }
+}
+
+/* Focus and invalid (after the variants so they win) */
+.cl-badge:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px var(--_ring);
+}
+
+.cl-badge[aria-invalid="true"] {
+  --_ring: color-mix(in oklab, var(--destructive) 20%, transparent);
+  border-color: var(--destructive);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-badge[aria-invalid="true"] {
+  --_ring: color-mix(in oklab, var(--destructive) 40%, transparent);
+}

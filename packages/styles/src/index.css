@@ -2,5 +2,5 @@
 
 @import "@component-library/tokens/tokens.css";
 @import "./base.css" layer(cl.base);
-@import "./components/button.css" layer(cl.components);
+@import "./components/index.css" layer(cl.components);
 @import "./utilities.css" layer(cl.utilities);
