@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "Scroll Area",
+  description: "Augments native scroll functionality for custom, cross-browser styling.",
+};
+
+<ComponentPreview name="scroll-area-demo" previewClassName="h-96" />
+
+## Usage
+
+```tsx
+import { ScrollArea, ScrollBar } from "@component-library/ui";
+```
+
+```tsx
+<ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+  Your scrollable content here.
+</ScrollArea>
+```
+
+## Composition
+
+Use the following composition to build a `ScrollArea`:
+
+```text
+ScrollArea
+└── ScrollBar
+```
+
+## Horizontal
+
+Use `ScrollBar` with `orientation="horizontal"` for horizontal scrolling.
+
+<ComponentPreview name="scroll-area-horizontal-demo" />

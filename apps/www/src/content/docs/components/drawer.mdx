@@ -1,0 +1,75 @@
+export const metadata = {
+  title: "Drawer",
+  description: "A drawer component for React.",
+};
+
+<ComponentPreview name="drawer-demo" />
+
+## About
+
+Drawer is built on top of [Vaul](https://github.com/emilkowalski/vaul) by [emilkowalski](https://twitter.com/emilkowalski).
+
+## Usage
+
+```tsx
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@component-library/ui";
+```
+
+```tsx
+<Drawer>
+  <DrawerTrigger>Open</DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+      <DrawerDescription>This action cannot be undone.</DrawerDescription>
+    </DrawerHeader>
+    <DrawerFooter>
+      <Button>Submit</Button>
+      <DrawerClose>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+```
+
+## Composition
+
+Use the following composition to build a `Drawer`:
+
+```text
+Drawer
+├── DrawerTrigger
+└── DrawerContent
+    ├── DrawerHeader
+    │   ├── DrawerTitle
+    │   └── DrawerDescription
+    └── DrawerFooter
+```
+
+## Scrollable Content
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="drawer-scrollable-content" />
+
+## Sides
+
+Use the `direction` prop to set the side of the drawer. Available options are `top`, `right`, `bottom`, and `left`.
+
+<ComponentPreview name="drawer-sides" />
+
+## Responsive Dialog
+
+You can combine the `Dialog` and `Drawer` components to create a responsive dialog. This renders a `Dialog` component on desktop and a `Drawer` on mobile.
+
+<ComponentPreview name="drawer-dialog" />

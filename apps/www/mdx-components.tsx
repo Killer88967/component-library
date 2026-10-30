@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
+import { Kbd } from "@component-library/ui";
 import { CodeBlock } from "@/components/code-block";
 import { ComponentPreview } from "@/components/component-preview";
 import { HtmlPreview } from "@/components/html-preview";
@@ -45,6 +46,7 @@ const components: MDXComponents = {
   pre: CodeBlock,
   ComponentPreview,
   HtmlPreview,
+  Kbd,
 };
 
 export function useMDXComponents(): MDXComponents {

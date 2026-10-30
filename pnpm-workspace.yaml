@@ -1,7 +1,10 @@
 packages:
   - "apps/**"
   - "packages/**"
+
 allowBuilds:
   esbuild: true
+
 minimumReleaseAgeExclude:
   - lucide-react@1.64.0
+  - react-resizable-panels@4.15.2

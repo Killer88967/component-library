@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/examples.ts && next dev",
+    "build": "node scripts/examples.ts && next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "node scripts/examples.ts && tsc --noEmit",
+    "examples": "node scripts/examples.ts"
   },
   "dependencies": {
     "@component-library/styles": "workspace:*",
@@ -19,7 +20,7 @@
     "@next/mdx": "^16.4.3",
     "@shikijs/rehype": "^4.5.0",
     "geist": "^1.8.2",
-    "lucide-react": "^1.63.0",
+    "lucide-react": "^1.64.0",
     "next": "^16.4.3",
     "next-themes": "^0.4.6",
     "react": "^19.3.1",
@@ -30,7 +31,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "tailwindcss": "^4.3.3",

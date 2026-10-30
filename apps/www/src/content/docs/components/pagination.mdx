@@ -1,0 +1,102 @@
+export const metadata = {
+  title: "Pagination",
+  description: "Pagination with page navigation, next and previous links.",
+};
+
+<ComponentPreview name="pagination-demo" />
+
+## Usage
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@component-library/ui";
+```
+
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>
+        2
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Composition
+
+Use the following composition to build a `Pagination`:
+
+```text
+Pagination
+└── PaginationContent
+    ├── PaginationItem
+    │   └── PaginationPrevious
+    ├── PaginationItem
+    │   └── PaginationLink
+    ├── PaginationItem
+    │   └── PaginationEllipsis
+    └── PaginationItem
+        └── PaginationNext
+```
+
+## Simple
+
+A simple pagination with only page numbers.
+
+<ComponentPreview name="pagination-simple" />
+
+## Icons Only
+
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
+
+<ComponentPreview name="pagination-icons-only" />
+
+## Next.js
+
+By default the `<PaginationLink />` component will render an `<a />` tag.
+
+To use the Next.js `<Link />` component, make the following updates to `pagination.tsx`.
+
+```diff
++ import Link from "next/link"
+
+- type PaginationLinkProps = ... & React.ComponentProps<"a">
++ type PaginationLinkProps = ... & React.ComponentProps<typeof Link>
+
+const PaginationLink = ({...props }: ) => (
+  <PaginationItem>
+-   <a>
++   <Link>
+      // ...
+-   </a>
++   </Link>
+  </PaginationItem>
+)
+
+```
+
+**Note:** We are making updates to the cli to automatically do this for you.

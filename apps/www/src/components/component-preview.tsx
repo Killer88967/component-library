@@ -7,7 +7,15 @@ import { examples } from "@/lib/examples";
 // Examples live outside the app; keep Turbopack from tracing the whole repo.
 const REPO_ROOT = path.join(/* turbopackIgnore: true */ process.cwd(), "../..");
 
-export async function ComponentPreview({ name }: { name: string }) {
+interface ComponentPreviewProps {
+  name: string;
+  /** Where the demo sits in the preview box, like shadcn's docs. */
+  align?: "center" | "start" | "end";
+  /** Extra classes for the preview box, e.g. a fixed height. */
+  previewClassName?: string;
+}
+
+export async function ComponentPreview({ name, align, previewClassName }: ComponentPreviewProps) {
   const example = examples[name];
   if (!example) throw new Error(`Unknown example "${name}"`);
 
@@ -19,5 +27,13 @@ export async function ComponentPreview({ name }: { name: string }) {
 
   const { Component } = example;
 
-  return <ComponentPreviewTabs preview={<Component />} code={source} html={html} />;
+  return (
+    <ComponentPreviewTabs
+      preview={<Component />}
+      code={source}
+      html={html}
+      align={align}
+      previewClassName={previewClassName}
+    />
+  );
 }

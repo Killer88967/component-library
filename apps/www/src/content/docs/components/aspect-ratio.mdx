@@ -1,0 +1,30 @@
+export const metadata = {
+  title: "Aspect Ratio",
+  description: "Displays content within a desired ratio.",
+};
+
+<ComponentPreview name="aspect-ratio-demo" />
+
+## Usage
+
+```tsx
+import { AspectRatio } from "@component-library/ui";
+```
+
+```tsx
+<AspectRatio ratio={16 / 9}>
+  <Image src="..." alt="Image" className="rounded-md object-cover" />
+</AspectRatio>
+```
+
+## Square
+
+A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.
+
+<ComponentPreview name="aspect-ratio-square" />
+
+## Portrait
+
+A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.
+
+<ComponentPreview name="aspect-ratio-portrait" previewClassName="h-96" />

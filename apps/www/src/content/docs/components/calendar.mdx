@@ -1,0 +1,120 @@
+export const metadata = {
+  title: "Calendar",
+  description: "A calendar component that allows users to select a date or a range of dates.",
+};
+
+<ComponentPreview name="calendar-demo" previewClassName="h-96" />
+
+## Usage
+
+```tsx
+import { Calendar } from "@component-library/ui";
+```
+
+```tsx
+const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+return <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-lg border" />;
+```
+
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+
+## About
+
+The `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).
+
+## Date Picker
+
+You can use the `<Calendar>` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
+
+## Persian / Hijri / Jalali Calendar
+
+To use the Persian calendar, edit `components/ui/calendar.tsx` and replace `react-day-picker` with `react-day-picker/persian`.
+
+```diff
+- import { DayPicker } from "react-day-picker"
++ import { DayPicker } from "react-day-picker/persian"
+```
+
+## Selected Date (With TimeZone)
+
+The Calendar component accepts a `timeZone` prop to ensure dates are displayed and selected in the user's local timezone.
+
+```tsx
+export function CalendarWithTimezone() {
+  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [timeZone, setTimeZone] = React.useState<string | undefined>(undefined);
+
+  React.useEffect(() => {
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }, []);
+
+  return <Calendar mode="single" selected={date} onSelect={setDate} timeZone={timeZone} />;
+}
+```
+
+**Note:** If you notice a selected date offset (for example, selecting the 20th highlights the 19th), make sure the `timeZone` prop is set to the user's local timezone.
+
+**Why client-side?** The timezone is detected using `Intl.DateTimeFormat().resolvedOptions().timeZone` inside a `useEffect` to ensure compatibility with server-side rendering. Detecting the timezone during render would cause hydration mismatches, as the server and client may be in different timezones.
+
+## Basic
+
+A basic calendar component. We used `className="rounded-lg border"` to style the calendar.
+
+<ComponentPreview name="calendar-basic" previewClassName="h-96" />
+
+## Range Calendar
+
+Use the `mode="range"` prop to enable range selection.
+
+<ComponentPreview name="calendar-range" previewClassName="h-[36rem] md:h-96" />
+
+## Month and Year Selector
+
+Use `captionLayout="dropdown"` to show month and year dropdowns.
+
+<ComponentPreview name="calendar-caption" previewClassName="h-96" />
+
+## Presets
+
+<ComponentPreview name="calendar-presets" previewClassName="h-[650px]" />
+
+## Date and Time Picker
+
+<ComponentPreview name="calendar-time" previewClassName="h-[600px]" />
+
+## Booked dates
+
+<ComponentPreview name="calendar-booked-dates" previewClassName="h-96" />
+
+## Custom Cell Size
+
+<ComponentPreview name="calendar-custom-days" previewClassName="min-h-[560px]" />
+
+You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
+
+```tsx
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+Or use fixed values:
+
+```tsx
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```
+
+## Week Numbers
+
+Use `showWeekNumber` to show week numbers.
+
+<ComponentPreview name="calendar-week-numbers" previewClassName="h-96" />

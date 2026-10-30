@@ -1,0 +1,61 @@
+export const metadata = {
+  title: "Alert",
+  description: "Displays a callout for user attention.",
+};
+
+<ComponentPreview name="alert-demo" previewClassName="h-auto sm:h-72 p-6" />
+
+## Usage
+
+```tsx
+import { Alert, AlertAction, AlertDescription, AlertTitle } from "@component-library/ui";
+```
+
+```tsx
+<Alert>
+  <InfoIcon />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+  <AlertAction>
+    <Button variant="outline">Enable</Button>
+  </AlertAction>
+</Alert>
+```
+
+## Composition
+
+Use the following composition to build an `Alert`:
+
+```text
+Alert
+├── Icon
+├── AlertTitle
+├── AlertDescription
+└── AlertAction
+```
+
+## Basic
+
+A basic alert with an icon, title and description.
+
+<ComponentPreview name="alert-basic" previewClassName="h-auto sm:h-72 p-6" />
+
+## Destructive
+
+Use `variant="destructive"` to create a destructive alert.
+
+<ComponentPreview name="alert-destructive" previewClassName="h-auto sm:h-72 p-6" />
+
+## Action
+
+Use `AlertAction` to add a button or other action element to the alert.
+
+<ComponentPreview name="alert-action" previewClassName="h-auto sm:h-72 p-6" />
+
+## Custom Colors
+
+You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert` component.
+
+<ComponentPreview name="alert-colors" previewClassName="h-auto sm:h-72 p-6" />

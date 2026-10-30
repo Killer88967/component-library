@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@component-library/ui";
+import { cn } from "@component-library/utils";
 import { CopyButton } from "@/components/copy-button";
 
 interface ComponentPreviewTabsProps {
@@ -9,9 +10,17 @@ interface ComponentPreviewTabsProps {
   code: string;
   /** The same code, already highlighted by Shiki on the server. */
   html: string;
+  align?: "center" | "start" | "end";
+  previewClassName?: string;
 }
 
-export function ComponentPreviewTabs({ preview, code, html }: ComponentPreviewTabsProps) {
+export function ComponentPreviewTabs({
+  preview,
+  code,
+  html,
+  align = "center",
+  previewClassName,
+}: ComponentPreviewTabsProps) {
   return (
     <Tabs defaultValue="preview" className="my-6 gap-3">
       <TabsList variant="line">
@@ -19,7 +28,13 @@ export function ComponentPreviewTabs({ preview, code, html }: ComponentPreviewTa
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
       <TabsContent value="preview" forceMount className="data-[state=inactive]:hidden">
-        <div className="flex min-h-72 items-center justify-center rounded-lg border p-6 sm:p-10">
+        <div
+          data-align={align}
+          className={cn(
+            "flex min-h-72 w-full justify-center rounded-lg border p-6 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start sm:p-10",
+            previewClassName,
+          )}
+        >
           {preview}
         </div>
       </TabsContent>

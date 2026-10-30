@@ -1,0 +1,73 @@
+export const metadata = {
+  title: "Navigation Menu",
+  description: "A collection of links for navigating websites.",
+};
+
+<ComponentPreview name="navigation-menu-demo" previewClassName="h-96" />
+
+## Usage
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@component-library/ui";
+```
+
+```tsx
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink>Link</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+## Composition
+
+Use the following composition to build a `NavigationMenu`:
+
+```text
+NavigationMenu
+├── NavigationMenuList
+│   ├── NavigationMenuItem
+│   │   ├── NavigationMenuTrigger
+│   │   └── NavigationMenuContent
+│   │       ├── NavigationMenuLink
+│   │       └── NavigationMenuLink
+│   └── NavigationMenuItem
+│       └── NavigationMenuLink
+└── NavigationMenuIndicator
+```
+
+## Link Component
+
+Use the `asChild` prop to compose a custom link component such as Next.js `Link`.
+
+```tsx
+import Link from "next/link";
+
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@component-library/ui";
+
+export function NavigationMenuDemo() {
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+        <Link href="/docs">Documentation</Link>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  );
+}
+```

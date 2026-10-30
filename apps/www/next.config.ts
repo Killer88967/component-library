@@ -4,6 +4,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["*.app.github.dev"],
   transpilePackages: ["@component-library/ui", "@component-library/utils"],
+  // Some demos (aspect ratio, item, scroll area) use next/image with remote photos.
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "github.com" },
+      { protocol: "https", hostname: "avatar.vercel.sh" },
+    ],
+  },
 };
 
 const withMDX = createMDX({
