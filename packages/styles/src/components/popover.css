@@ -1,0 +1,56 @@
+/*
+ * CSS-only Popover. Matches the shadcn/ui Popover (MIT, "nova" style).
+ * Uses the native popover attribute, so it opens, closes and light-dismisses
+ * with no JavaScript. The runtime (@component-library/utils/cl.js) only
+ * positions it next to its button.
+ *
+ * <button class="cl-button" data-variant="outline" popovertarget="dims">Open</button>
+ * <div class="cl-popover" id="dims" popover>
+ *   <div class="cl-popover-header">
+ *     <p class="cl-popover-title">Dimensions</p>
+ *     <p class="cl-popover-description">Set the dimensions for the layer.</p>
+ *   </div>
+ * </div>
+ *
+ * Placement: data-side="bottom|top|left|right" and data-align="center|start|end".
+ */
+
+.cl-popover {
+  display: none;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 18rem;
+  padding: 0.625rem;
+  border-radius: var(--radius);
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  outline: none;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent),
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.cl-popover:popover-open {
+  display: flex;
+}
+
+.cl-popover-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.cl-popover-title {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cl-popover-description {
+  margin: 0;
+  color: var(--muted-foreground);
+}

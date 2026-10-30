@@ -1,0 +1,54 @@
+<div class="cl-tabs" style="width: 100%; max-width: 24rem">
+  <div class="cl-tabs-list" role="tablist">
+    <button
+      class="cl-tabs-trigger"
+      role="tab"
+      id="tab-account"
+      aria-selected="true"
+      aria-controls="panel-account"
+    >
+      Account
+    </button>
+    <button
+      class="cl-tabs-trigger"
+      role="tab"
+      id="tab-password"
+      aria-selected="false"
+      aria-controls="panel-password"
+    >
+      Password
+    </button>
+  </div>
+  <div class="cl-tabs-content" role="tabpanel" id="panel-account" aria-labelledby="tab-account">
+    <div class="cl-card">
+      <div class="cl-card-header">
+        <div class="cl-card-title">Account</div>
+        <div class="cl-card-description">Make changes to your account here.</div>
+      </div>
+      <div class="cl-card-content cl-stack" style="--cl-gap: 0.75rem">
+        <label class="cl-label" for="tabs-html-name">Name</label>
+        <input class="cl-input" id="tabs-html-name" value="Jane Doe" />
+      </div>
+      <div class="cl-card-footer"><button class="cl-button">Save changes</button></div>
+    </div>
+  </div>
+  <div
+    class="cl-tabs-content"
+    role="tabpanel"
+    id="panel-password"
+    aria-labelledby="tab-password"
+    hidden
+  >
+    <div class="cl-card">
+      <div class="cl-card-header">
+        <div class="cl-card-title">Password</div>
+        <div class="cl-card-description">Change your password here.</div>
+      </div>
+      <div class="cl-card-content cl-stack" style="--cl-gap: 0.75rem">
+        <label class="cl-label" for="tabs-html-current">Current password</label>
+        <input class="cl-input" id="tabs-html-current" type="password" />
+      </div>
+      <div class="cl-card-footer"><button class="cl-button">Save password</button></div>
+    </div>
+  </div>
+</div>

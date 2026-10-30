@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
 import { CodeBlock } from "@/components/code-block";
 import { ComponentPreview } from "@/components/component-preview";
+import { HtmlPreview } from "@/components/html-preview";
 
 /** Plain text of a heading, used to build its anchor id. */
 function textOf(node: ReactNode): string {
@@ -43,6 +44,7 @@ const components: MDXComponents = {
   ),
   pre: CodeBlock,
   ComponentPreview,
+  HtmlPreview,
 };
 
 export function useMDXComponents(): MDXComponents {

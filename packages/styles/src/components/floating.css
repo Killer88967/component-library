@@ -1,0 +1,56 @@
+/*
+ * Shared by the floating layers: Popover, Dropdown Menu and Tooltip.
+ * Resets the browser's popover styles and adds the open/close animation.
+ * The runtime sets data-placed to the side it was placed on, which picks
+ * the slide direction.
+ */
+.cl-popover,
+.cl-menu,
+.cl-tooltip {
+  --_slide: 0.5rem;
+
+  position: fixed;
+  inset: auto;
+  z-index: 50;
+  margin: 0;
+  border: 0 solid var(--border);
+  overflow: visible;
+  opacity: 0;
+  scale: 0.95;
+  transition-property: opacity, scale, translate, display, overlay;
+  transition-duration: 100ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-behavior: allow-discrete;
+}
+
+.cl-popover:popover-open,
+.cl-menu:popover-open,
+.cl-tooltip:popover-open {
+  opacity: 1;
+  scale: 1;
+}
+
+@starting-style {
+  .cl-popover:popover-open,
+  .cl-menu:popover-open,
+  .cl-tooltip:popover-open {
+    opacity: 0;
+    scale: 0.95;
+  }
+
+  :is(.cl-popover, .cl-menu, .cl-tooltip):popover-open[data-placed="bottom"] {
+    translate: 0 calc(var(--_slide) * -1);
+  }
+
+  :is(.cl-popover, .cl-menu, .cl-tooltip):popover-open[data-placed="top"] {
+    translate: 0 var(--_slide);
+  }
+
+  :is(.cl-popover, .cl-menu, .cl-tooltip):popover-open[data-placed="left"] {
+    translate: var(--_slide) 0;
+  }
+
+  :is(.cl-popover, .cl-menu, .cl-tooltip):popover-open[data-placed="right"] {
+    translate: calc(var(--_slide) * -1) 0;
+  }
+}

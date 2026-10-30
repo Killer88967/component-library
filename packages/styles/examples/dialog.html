@@ -1,0 +1,46 @@
+<button class="cl-button" data-variant="outline" data-dialog-open="edit-profile">
+  Edit profile
+</button>
+
+<dialog class="cl-dialog" id="edit-profile" aria-labelledby="edit-profile-title">
+  <div class="cl-dialog-header">
+    <h2 class="cl-dialog-title" id="edit-profile-title">Edit profile</h2>
+    <p class="cl-dialog-description">
+      Make changes to your profile here. Click save when you're done.
+    </p>
+  </div>
+  <form class="cl-stack" method="dialog" id="edit-profile-form">
+    <div class="cl-stack" style="--cl-gap: 0.5rem">
+      <label class="cl-label" for="edit-profile-name">Name</label>
+      <input class="cl-input" id="edit-profile-name" value="Jane Doe" />
+    </div>
+    <div class="cl-stack" style="--cl-gap: 0.5rem">
+      <label class="cl-label" for="edit-profile-username">Username</label>
+      <input class="cl-input" id="edit-profile-username" value="@jane" />
+    </div>
+  </form>
+  <div class="cl-dialog-footer">
+    <button class="cl-button" data-variant="outline" data-dialog-close>Cancel</button>
+    <button class="cl-button" type="submit" form="edit-profile-form">Save changes</button>
+  </div>
+  <button
+    class="cl-button cl-dialog-close"
+    data-variant="ghost"
+    data-size="icon-sm"
+    data-dialog-close
+    aria-label="Close"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  </button>
+</dialog>

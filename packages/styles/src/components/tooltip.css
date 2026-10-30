@@ -1,0 +1,76 @@
+/*
+ * CSS-only Tooltip. Matches the shadcn/ui Tooltip (MIT, "nova" style).
+ * Point a control at it with aria-describedby. The runtime
+ * (@component-library/utils/cl.js) shows it on hover and keyboard focus.
+ *
+ * <button class="cl-button" data-variant="outline" aria-describedby="tip">Hover</button>
+ * <div class="cl-tooltip" id="tip" role="tooltip" popover="manual">Add to library</div>
+ *
+ * Placement: data-side="top|bottom|left|right" (default top).
+ */
+.cl-tooltip {
+  display: none;
+  align-items: center;
+  gap: 0.375rem;
+  width: fit-content;
+  max-width: 20rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: calc(var(--radius) * 0.8);
+  background-color: var(--foreground);
+  color: var(--background);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  pointer-events: none;
+}
+
+.cl-tooltip:popover-open {
+  display: inline-flex;
+}
+
+.cl-tooltip:has(.cl-kbd) {
+  padding-right: 0.375rem;
+}
+
+/* The arrow: a small rotated square tucked under the edge facing the trigger. */
+.cl-tooltip::after {
+  content: "";
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 2px;
+  background-color: var(--foreground);
+  rotate: 45deg;
+  z-index: -1;
+}
+
+.cl-tooltip[data-placed="top"]::after {
+  top: calc(100% - 7px);
+  left: calc(50% - 5px);
+}
+
+.cl-tooltip[data-placed="bottom"]::after {
+  bottom: calc(100% - 7px);
+  left: calc(50% - 5px);
+}
+
+.cl-tooltip[data-placed="left"]::after {
+  left: calc(100% - 7px);
+  top: calc(50% - 5px);
+}
+
+.cl-tooltip[data-placed="right"]::after {
+  right: calc(100% - 7px);
+  top: calc(50% - 5px);
+}
+
+.cl-tooltip .cl-kbd {
+  position: relative;
+  z-index: 50;
+  border-radius: calc(var(--radius) * 0.6);
+  background-color: color-mix(in oklab, var(--background) 20%, transparent);
+  color: var(--background);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-tooltip .cl-kbd {
+  background-color: color-mix(in oklab, var(--background) 10%, transparent);
+}

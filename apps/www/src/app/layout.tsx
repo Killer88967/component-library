@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 import { Toaster, TooltipProvider } from "@component-library/ui";
 import { SiteHeader } from "@/components/site-header";
+import { DomRuntime } from "@/components/dom-runtime";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <SiteHeader />
             {children}
             <Toaster />
+            <DomRuntime />
           </TooltipProvider>
         </ThemeProvider>
       </body>

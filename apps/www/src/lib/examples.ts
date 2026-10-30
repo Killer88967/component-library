@@ -16,6 +16,7 @@ import InputGroupDemo from "@component-library/ui/input-group/examples/input-gro
 import InputStates from "@component-library/ui/input/examples/input-states";
 import KbdDemo from "@component-library/ui/kbd/examples/kbd-demo";
 import LabelDemo from "@component-library/ui/label/examples/label-demo";
+import NativeSelectDemo from "@component-library/ui/native-select/examples/native-select-demo";
 import PopoverDemo from "@component-library/ui/popover/examples/popover-demo";
 import SelectDemo from "@component-library/ui/select/examples/select-demo";
 import SeparatorDemo from "@component-library/ui/separator/examples/separator-demo";
@@ -59,6 +60,7 @@ export const examples: Record<string, Example> = {
   "input-states": example(InputStates, "input/examples/input-states"),
   "kbd-demo": example(KbdDemo, "kbd/examples/kbd-demo"),
   "label-demo": example(LabelDemo, "label/examples/label-demo"),
+  "native-select-demo": example(NativeSelectDemo, "native-select/examples/native-select-demo"),
   "popover-demo": example(PopoverDemo, "popover/examples/popover-demo"),
   "select-demo": example(SelectDemo, "select/examples/select-demo"),
   "separator-demo": example(SeparatorDemo, "separator/examples/separator-demo"),

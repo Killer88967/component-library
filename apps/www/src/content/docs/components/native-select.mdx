@@ -1,0 +1,24 @@
+export const metadata = {
+  title: "Native Select",
+  description:
+    "A styled native select. Works in forms with no JavaScript and uses the system picker on phones.",
+};
+
+<ComponentPreview name="native-select-demo" />
+
+## Usage
+
+```tsx
+import { NativeSelect, NativeSelectOption } from "@component-library/ui";
+
+<NativeSelect>
+  <NativeSelectOption value="light">Light</NativeSelectOption>
+  <NativeSelectOption value="dark">Dark</NativeSelectOption>
+</NativeSelect>;
+```
+
+Use [Select](/docs/components/select) when you need custom items, like icons or checkmarks. Use Native Select for plain lists, especially in forms and on mobile.
+
+## CSS only
+
+<HtmlPreview name="select" />

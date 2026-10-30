@@ -41,6 +41,24 @@ Import the plain CSS entry instead. This gives you the theme, a base reset and t
 @import "@component-library/styles";
 ```
 
+## CSS-only components
+
+Most `cl-*` components are pure CSS. Dialog, Popover, Dropdown Menu, Tooltip, Tabs and Toast also need a small script (about 9 KB) that opens, positions and switches them. It has no dependencies.
+
+On a plain HTML page, load it once:
+
+```html
+<script src="/node_modules/@component-library/utils/dist/cl.js" defer></script>
+```
+
+With a bundler, import it instead:
+
+```ts
+import { start } from "@component-library/utils/dom";
+
+start();
+```
+
 ## Dark mode
 
 Dark mode turns on when the `dark` class (or `data-theme="dark"`) is on a parent element, usually `<html>`. With Next.js, `next-themes` handles this for you:

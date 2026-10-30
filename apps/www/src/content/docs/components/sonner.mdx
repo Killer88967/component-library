@@ -23,3 +23,14 @@ import { toast } from "sonner";
 toast("Event has been created");
 toast.success("Changes saved");
 ```
+
+## CSS only
+
+The runtime creates toasts with the same look. Add `data-toast` to any button, or call `cl.toast()` from your own script. It needs the small runtime script; see [Installation](/docs/installation#css-only-components).
+
+<HtmlPreview name="toast" />
+
+```js
+cl.toast("Event has been created", { description: "Sunday at 9:00 AM" });
+cl.toast.success("Changes saved");
+```

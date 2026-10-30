@@ -1,0 +1,166 @@
+/*
+ * CSS-only Toast. Matches the shadcn/ui Toast (Sonner, MIT, "nova" style).
+ * Toasts are created by the runtime (@component-library/utils/cl.js):
+ *
+ *   cl.toast("Event has been created", { description: "Sunday at 9:00 AM" });
+ *
+ * or with no JavaScript of your own:
+ *
+ *   <button class="cl-button" data-toast="Saved" data-toast-type="success">Save</button>
+ *
+ * Like Sonner, toasts stack behind the newest one and fan out on hover.
+ */
+.cl-toaster {
+  --gap: 14px;
+
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  width: 356px;
+  height: var(--front-height, 0px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (width < 600px) {
+  .cl-toaster {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: auto;
+  }
+}
+
+/* Keeps the hover going while the pointer crosses the gaps between expanded toasts. */
+.cl-toaster[data-expanded]::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--expanded-height, 0px);
+}
+
+.cl-toast {
+  --y: 0px;
+  --scale: 1;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  transform: translateY(var(--y)) scale(var(--scale));
+  transform-origin: bottom center;
+  transition-property: transform, opacity, height;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+@starting-style {
+  .cl-toast {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* Collapsed stack: the toasts behind the front one share its height and hide their content. */
+.cl-toaster:not([data-expanded]) .cl-toast:not([data-front]) {
+  height: var(--front-height);
+}
+
+.cl-toaster:not([data-expanded]) .cl-toast:not([data-front]) > * {
+  opacity: 0;
+}
+
+.cl-toast > * {
+  transition: opacity 400ms;
+}
+
+.cl-toast[data-hidden],
+.cl-toast[data-removed] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cl-toast[data-removed] {
+  transform: translateY(calc(var(--y) + 25%)) scale(var(--scale));
+  transition-duration: 200ms;
+}
+
+.cl-toast-icon {
+  display: flex;
+  flex-shrink: 0;
+  align-self: center;
+  margin-right: 4px;
+}
+
+.cl-toast-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cl-toast[data-type="loading"] .cl-toast-icon svg {
+  animation: cl-spin 1s linear infinite;
+}
+
+@keyframes cl-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.cl-toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cl-toast-title {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.cl-toast-description {
+  color: #3f3f3f;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+:where(.dark, [data-theme="dark"]) .cl-toast-description {
+  color: hsl(0 0% 91%);
+}
+
+.cl-toast-action {
+  flex-shrink: 0;
+  height: 24px;
+  margin-left: auto;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--popover-foreground);
+  color: var(--popover);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-toast,
+  .cl-toast > * {
+    transition-duration: 0ms;
+  }
+}

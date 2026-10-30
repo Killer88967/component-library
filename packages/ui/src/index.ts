@@ -62,6 +62,11 @@ export {
 export { Kbd, KbdGroup } from "./kbd/kbd";
 export { Label } from "./label/label";
 export {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+} from "./native-select/native-select";
+export {
   Popover,
   PopoverAnchor,
   PopoverContent,
