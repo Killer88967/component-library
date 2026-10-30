@@ -1,0 +1,25 @@
+export const metadata = {
+  title: "Tabs",
+  description: "A set of layered sections of content, shown one at a time.",
+};
+
+<ComponentPreview name="tabs-demo" />
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@component-library/ui";
+
+<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Account settings.</TabsContent>
+  <TabsContent value="password">Change your password.</TabsContent>
+</Tabs>;
+```
+
+## Line
+
+<ComponentPreview name="tabs-line" />

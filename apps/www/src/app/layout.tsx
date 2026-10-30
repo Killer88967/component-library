@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { Toaster, TooltipProvider } from "@component-library/ui";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
@@ -28,8 +29,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
-          {children}
+          <TooltipProvider>
+            <SiteHeader />
+            {children}
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "Dropdown Menu",
+  description: "Displays a menu of actions or options, triggered by a button.",
+};
+
+<ComponentPreview name="dropdown-menu-demo" />
+
+## Usage
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@component-library/ui";
+
+<DropdownMenu>
+  <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>;
+```
+
+## Checkboxes and radio items
+
+<ComponentPreview name="dropdown-menu-checkboxes" />

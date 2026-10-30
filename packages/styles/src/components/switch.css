@@ -1,0 +1,95 @@
+/*
+ * CSS-only Switch. Matches the shadcn/ui Switch (MIT, "nova" style).
+ * <input type="checkbox" role="switch" class="cl-switch" id="airplane-mode">
+ * Sizes: default | sm (data-size="sm")
+ */
+.cl-switch {
+  --_w: 32px;
+  --_h: 18.4px;
+  --_thumb: 1rem;
+
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: var(--_w);
+  height: var(--_h);
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--input);
+  cursor: default;
+  outline: none;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.cl-switch[data-size="sm"] {
+  --_w: 24px;
+  --_h: 14px;
+  --_thumb: 0.75rem;
+}
+
+/* The thumb */
+.cl-switch::before {
+  content: "";
+  display: block;
+  width: var(--_thumb);
+  height: var(--_thumb);
+  border-radius: calc(infinity * 1px);
+  background-color: var(--background);
+  pointer-events: none;
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Bigger tap target, same as the React version. */
+.cl-switch::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.75rem;
+}
+
+.cl-switch:checked {
+  background-color: var(--primary);
+}
+
+.cl-switch:checked::before {
+  translate: calc(100% - 2px) 0;
+}
+
+.cl-switch:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.cl-switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cl-switch[aria-invalid="true"] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-switch:not(:checked) {
+  background-color: color-mix(in oklab, var(--input) 80%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-switch::before {
+  background-color: var(--foreground);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-switch:checked::before {
+  background-color: var(--primary-foreground);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-switch[aria-invalid="true"] {
+  border-color: color-mix(in oklab, var(--destructive) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}

@@ -1,0 +1,25 @@
+export const metadata = {
+  title: "Toast",
+  description: "Short notifications that pop up and dismiss themselves, built on Sonner.",
+};
+
+<ComponentPreview name="sonner-demo" />
+
+## Usage
+
+Add the `Toaster` once, usually in the root layout:
+
+```tsx
+import { Toaster } from "@component-library/ui";
+
+<Toaster />;
+```
+
+Then show a toast from anywhere:
+
+```tsx
+import { toast } from "sonner";
+
+toast("Event has been created");
+toast.success("Changes saved");
+```

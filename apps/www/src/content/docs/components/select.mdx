@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "Select",
+  description: "Displays a list of options to pick from, triggered by a button.",
+};
+
+<ComponentPreview name="select-demo" />
+
+## Usage
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@component-library/ui";
+
+<Select>
+  <SelectTrigger className="w-48">
+    <SelectValue placeholder="Theme" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="light">Light</SelectItem>
+    <SelectItem value="dark">Dark</SelectItem>
+  </SelectContent>
+</Select>;
+```

@@ -1,0 +1,23 @@
+export const metadata = {
+  title: "Checkbox",
+  description: "A control that allows the user to toggle between checked and not checked.",
+};
+
+<ComponentPreview name="checkbox-demo" />
+
+## Usage
+
+```tsx
+import { Checkbox } from "@component-library/ui";
+
+<Checkbox id="terms" />;
+```
+
+## CSS only
+
+A native checkbox, so it works in forms with no JavaScript:
+
+```html
+<input type="checkbox" class="cl-checkbox" id="terms" />
+<label class="cl-label" for="terms">Accept terms</label>
+```

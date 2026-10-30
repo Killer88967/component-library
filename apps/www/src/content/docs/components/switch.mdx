@@ -1,0 +1,24 @@
+export const metadata = {
+  title: "Switch",
+  description: "A control that allows the user to toggle between on and off.",
+};
+
+<ComponentPreview name="switch-demo" />
+
+## Usage
+
+```tsx
+import { Switch } from "@component-library/ui";
+
+<Switch id="airplane-mode" />
+<Switch size="sm" />
+```
+
+## CSS only
+
+A native checkbox with `role="switch"`:
+
+```html
+<input type="checkbox" role="switch" class="cl-switch" id="airplane-mode" />
+<input type="checkbox" role="switch" class="cl-switch" data-size="sm" />
+```

@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Tooltip",
+  description: "A popup that shows information about an element on hover or focus.",
+};
+
+<ComponentPreview name="tooltip-demo" />
+
+## Usage
+
+Wrap your app in `TooltipProvider` once, usually in the root layout:
+
+```tsx
+import { TooltipProvider } from "@component-library/ui";
+
+<TooltipProvider>{children}</TooltipProvider>;
+```
+
+Then use it anywhere:
+
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from "@component-library/ui";
+
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>Add to library</TooltipContent>
+</Tooltip>;
+```
