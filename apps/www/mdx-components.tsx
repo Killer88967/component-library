@@ -12,7 +12,7 @@ const components: MDXComponents = {
   ),
   pre: (props) => (
     <pre
-      className="border-border bg-surface my-6 overflow-x-auto rounded-lg border p-4 text-sm [&_code]:bg-transparent [&_code]:p-0"
+      className="bg-muted/50 my-6 overflow-x-auto rounded-lg border p-4 text-sm [&_code]:bg-transparent [&_code]:p-0"
       {...props}
     />
   ),

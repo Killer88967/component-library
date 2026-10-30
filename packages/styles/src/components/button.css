@@ -1,94 +1,190 @@
+/*
+ * CSS-only Button. Matches the shadcn/ui Button (MIT) pixel for pixel.
+ * <button class="cl-button" data-variant="outline" data-size="sm">
+ * Variants: default | destructive | outline | secondary | ghost | link
+ * Sizes: default | xs | sm | lg | icon | icon-xs | icon-sm | icon-lg
+ */
 .cl-button {
-  --_bg: var(--cl-primary);
-  --_bg-hover: color-mix(in oklch, var(--cl-primary) 88%, var(--cl-foreground));
-  --_fg: var(--cl-primary-foreground);
-  --_border: transparent;
-  --_h: calc(var(--cl-spacing) * 10);
-  --_px: calc(var(--cl-spacing) * 4);
+  --_h: 2.25rem;
+  --_px: 1rem;
+  --_px-svg: 0.75rem;
+  --_gap: 0.5rem;
+  --_svg: 1rem;
+  --_ring: color-mix(in oklab, var(--ring) 50%, transparent);
 
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--cl-spacing) * 2);
+  gap: var(--_gap);
   height: var(--_h);
-  padding-inline: var(--_px);
-  border: 1px solid var(--_border);
-  border-radius: var(--cl-radius-md);
-  background-color: var(--_bg);
-  color: var(--_fg);
+  padding: 0 var(--_px);
+  border: 0 solid var(--border);
+  border-radius: calc(var(--radius) * 0.8);
+  background-color: transparent;
+  color: inherit;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 500;
-  line-height: 1;
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  user-select: none;
-  transition:
-    background-color var(--cl-duration-fast) var(--cl-ease-standard),
-    border-color var(--cl-duration-fast) var(--cl-ease-standard),
-    color var(--cl-duration-fast) var(--cl-ease-standard),
-    transform var(--cl-duration-fast) var(--cl-ease-standard);
+  outline: none;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-.cl-button:hover {
-  background-color: var(--_bg-hover);
+.cl-button:has(> svg) {
+  padding-inline: var(--_px-svg);
 }
 
-.cl-button:active {
-  transform: translateY(1px);
+.cl-button svg {
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.cl-button svg:not([class*="size-"]) {
+  width: var(--_svg);
+  height: var(--_svg);
 }
 
 .cl-button:focus-visible {
-  outline: 2px solid var(--cl-ring);
-  outline-offset: 2px;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px var(--_ring);
 }
 
 .cl-button:disabled,
 .cl-button[aria-disabled="true"] {
-  opacity: 0.5;
   pointer-events: none;
+  opacity: 0.5;
+}
+
+.cl-button[aria-invalid="true"] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
 }
 
 /* Variants */
-.cl-button[data-variant="secondary"] {
-  --_bg: var(--cl-secondary);
-  --_bg-hover: color-mix(in oklch, var(--cl-secondary) 85%, var(--cl-foreground));
-  --_fg: var(--cl-secondary-foreground);
+.cl-button:not([data-variant]),
+.cl-button[data-variant="default"] {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.cl-button:not([data-variant]):hover,
+.cl-button[data-variant="default"]:hover {
+  background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+
+.cl-button[data-variant="destructive"] {
+  --_ring: color-mix(in oklab, var(--destructive) 20%, transparent);
+  background-color: var(--destructive);
+  color: #fff;
+}
+
+.cl-button[data-variant="destructive"]:hover {
+  background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
 }
 
 .cl-button[data-variant="outline"] {
-  --_bg: transparent;
-  --_bg-hover: var(--cl-muted);
-  --_fg: var(--cl-foreground);
-  --_border: var(--cl-border);
+  border-width: 1px;
+  background-color: var(--background);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-.cl-button[data-variant="ghost"] {
-  --_bg: transparent;
-  --_bg-hover: var(--cl-muted);
-  --_fg: var(--cl-foreground);
+.cl-button[data-variant="outline"]:hover,
+.cl-button[data-variant="ghost"]:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
 }
 
-.cl-button[data-variant="danger"] {
-  --_bg: var(--cl-danger);
-  --_bg-hover: color-mix(in oklch, var(--cl-danger) 88%, var(--cl-foreground));
-  --_fg: var(--cl-danger-foreground);
+.cl-button[data-variant="outline"]:focus-visible {
+  box-shadow:
+    0 1px 2px 0 rgb(0 0 0 / 0.05),
+    0 0 0 3px var(--_ring);
+}
+
+.cl-button[data-variant="secondary"] {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.cl-button[data-variant="secondary"]:hover {
+  background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
+}
+
+.cl-button[data-variant="link"] {
+  color: var(--primary);
+  text-underline-offset: 4px;
+}
+
+.cl-button[data-variant="link"]:hover {
+  text-decoration-line: underline;
+}
+
+/* Dark mode */
+:where(.dark, [data-theme="dark"]) .cl-button[aria-invalid="true"] {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-button[data-variant="destructive"] {
+  --_ring: color-mix(in oklab, var(--destructive) 40%, transparent);
+  background-color: color-mix(in oklab, var(--destructive) 60%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-button[data-variant="outline"] {
+  border-color: var(--input);
+  background-color: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-button[data-variant="outline"]:hover {
+  background-color: color-mix(in oklab, var(--input) 50%, transparent);
+}
+
+:where(.dark, [data-theme="dark"]) .cl-button[data-variant="ghost"]:hover {
+  background-color: color-mix(in oklab, var(--accent) 50%, transparent);
 }
 
 /* Sizes */
+.cl-button[data-size="xs"] {
+  --_h: 1.5rem;
+  --_px: 0.5rem;
+  --_px-svg: 0.375rem;
+  --_gap: 0.25rem;
+  --_svg: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .cl-button[data-size="sm"] {
-  --_h: calc(var(--cl-spacing) * 8);
-  --_px: calc(var(--cl-spacing) * 3);
-  font-size: 0.8125rem;
+  --_h: 2rem;
+  --_px: 0.75rem;
+  --_px-svg: 0.625rem;
+  --_gap: 0.375rem;
 }
 
 .cl-button[data-size="lg"] {
-  --_h: calc(var(--cl-spacing) * 12);
-  --_px: calc(var(--cl-spacing) * 6);
-  font-size: 1rem;
+  --_h: 2.5rem;
+  --_px: 1.5rem;
+  --_px-svg: 1rem;
 }
 
-.cl-button[data-size="icon"] {
+.cl-button[data-size^="icon"] {
   --_px: 0;
+  --_px-svg: 0;
   width: var(--_h);
+}
+
+.cl-button[data-size="icon-xs"] {
+  --_h: 1.5rem;
+  --_svg: 0.75rem;
+}
+
+.cl-button[data-size="icon-sm"] {
+  --_h: 2rem;
+}
+
+.cl-button[data-size="icon-lg"] {
+  --_h: 2.5rem;
 }

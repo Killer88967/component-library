@@ -2,12 +2,13 @@ import { Button } from "@component-library/ui";
 
 export default function ButtonVariants() {
   return (
-    <div className="cl-cluster">
-      <Button>Primary</Button>
+    <div className="flex flex-wrap items-center gap-2">
+      <Button>Default</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
-      <Button variant="danger">Danger</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="link">Link</Button>
     </div>
   );
 }

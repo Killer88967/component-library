@@ -1,19 +1,21 @@
 "use client";
 
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Button } from "@component-library/ui";
 
 export function ThemeToggle() {
-  function toggle() {
-    const root = document.documentElement;
-    const isDark =
-      root.dataset.theme === "dark" ||
-      (!root.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
-    root.dataset.theme = isDark ? "light" : "dark";
-  }
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <Button variant="outline" onClick={toggle}>
-      Toggle theme
+    <Button
+      variant="ghost"
+      size="icon"
+      aria-label="Toggle theme"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+    >
+      <SunIcon className="dark:hidden" />
+      <MoonIcon className="hidden dark:block" />
     </Button>
   );
 }

@@ -2,26 +2,26 @@
   width: 100%;
   max-width: var(--cl-max, 72rem);
   margin-inline: auto;
-  padding-inline: calc(var(--cl-spacing) * 4);
+  padding-inline: 1rem;
 }
 
 .cl-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--cl-gap, calc(var(--cl-spacing) * 4));
+  gap: var(--cl-gap, 1rem);
 }
 
 .cl-cluster {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--cl-gap, calc(var(--cl-spacing) * 2));
+  gap: var(--cl-gap, 0.5rem);
 }
 
 .cl-grid-auto {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(var(--cl-min, 16rem), 100%), 1fr));
-  gap: var(--cl-gap, calc(var(--cl-spacing) * 4));
+  gap: var(--cl-gap, 1rem);
 }
 
 .cl-sr-only {

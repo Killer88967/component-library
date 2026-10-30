@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "@component-library/styles": "workspace:*",
-    "@component-library/utils": "workspace:*"
+    "@component-library/utils": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "lucide-react": "^1.63.0",
+    "radix-ui": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^19.3.0"

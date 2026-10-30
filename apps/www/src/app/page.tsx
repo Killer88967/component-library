@@ -1,57 +1,38 @@
+import Link from "next/link";
 import { tokens } from "@component-library/tokens";
 import { Button } from "@component-library/ui";
-import { ThemeToggle } from "@/components/theme-toggle";
 
-const variants = ["primary", "secondary", "outline", "ghost", "danger"] as const;
-const sizes = ["sm", "md", "lg"] as const;
+const colors = Object.keys(tokens.themes.neutral.light);
 
 export default function Home() {
   return (
-    <main
-      className="cl-container cl-stack py-16"
-      style={{ "--cl-gap": "3rem" } as React.CSSProperties}
-    >
-      <header className="cl-cluster justify-between">
-        <h1 className="text-3xl font-semibold">Component Library</h1>
-        <ThemeToggle />
-      </header>
-
-      <section className="cl-stack">
-        <h2 className="text-xl font-semibold">Button</h2>
-        <div className="cl-cluster">
-          {variants.map((variant) => (
-            <Button key={variant} variant={variant} className="capitalize">
-              {variant}
-            </Button>
-          ))}
-        </div>
-        <div className="cl-cluster">
-          {sizes.map((size) => (
-            <Button key={size} size={size}>
-              Size {size}
-            </Button>
-          ))}
-          <Button disabled>Disabled</Button>
+    <main className="cl-container py-16">
+      <section className="flex flex-col items-start gap-4 py-12">
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Component Library</h1>
+        <p className="text-muted-foreground max-w-2xl text-lg">
+          Components, CSS and TypeScript utilities for building websites. Built on shadcn/ui, with
+          more on top.
+        </p>
+        <div className="flex gap-2">
+          <Button asChild>
+            <Link href="/docs">Get Started</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/docs/components/button">Components</Link>
+          </Button>
         </div>
       </section>
 
-      <section className="cl-stack">
-        <h2 className="text-xl font-semibold">Colors</h2>
-        {Object.entries(tokens.colors).map(([name, scale]) => (
-          <div key={name} className="space-y-2">
-            <p className="text-muted-foreground text-sm font-medium capitalize">{name}</p>
-            <div className="grid grid-cols-11 gap-1">
-              {Object.keys(scale).map((step) => (
-                <div
-                  key={step}
-                  title={`${name}-${step}`}
-                  className="h-10 rounded-md"
-                  style={{ background: `var(--cl-${name}-${step})` }}
-                />
-              ))}
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight">Theme</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+          {colors.map((name) => (
+            <div key={name} className="space-y-1.5">
+              <div className="h-12 rounded-md border" style={{ background: `var(--${name})` }} />
+              <p className="text-muted-foreground font-mono text-xs">{name}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
     </main>
   );

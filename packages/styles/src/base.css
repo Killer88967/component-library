@@ -2,24 +2,35 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border: 0 solid var(--border);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
 }
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 html {
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  font-family: var(--cl-font-sans);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-family: var(
+    --font-sans,
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji"
+  );
   line-height: 1.5;
-  background-color: var(--cl-background);
-  color: var(--cl-foreground);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100dvh;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 img,
@@ -37,6 +48,11 @@ textarea,
 select {
   font: inherit;
   color: inherit;
+  background-color: transparent;
+}
+
+button {
+  cursor: pointer;
 }
 
 h1,
@@ -45,7 +61,8 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
+  font-size: inherit;
+  font-weight: inherit;
   text-wrap: balance;
   overflow-wrap: break-word;
 }
@@ -55,29 +72,14 @@ p {
   overflow-wrap: break-word;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 code,
 kbd,
 samp,
 pre {
-  font-family: var(--cl-font-mono);
-}
-
-::selection {
-  background-color: color-mix(in oklch, var(--cl-primary) 30%, transparent);
-}
-
-:focus-visible {
-  outline: 2px solid var(--cl-ring);
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
 }
