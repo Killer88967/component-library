@@ -6,10 +6,13 @@ import ButtonVariants from "@component-library/ui/button/examples/button-variant
 import CardDemo from "@component-library/ui/card/examples/card-demo";
 import CardSmall from "@component-library/ui/card/examples/card-small";
 import CheckboxDemo from "@component-library/ui/checkbox/examples/checkbox-demo";
+import CommandDemo from "@component-library/ui/command/examples/command-demo";
+import CommandDialogDemo from "@component-library/ui/command/examples/command-dialog-demo";
 import DialogDemo from "@component-library/ui/dialog/examples/dialog-demo";
 import DropdownMenuCheckboxes from "@component-library/ui/dropdown-menu/examples/dropdown-menu-checkboxes";
 import DropdownMenuDemo from "@component-library/ui/dropdown-menu/examples/dropdown-menu-demo";
 import InputDemo from "@component-library/ui/input/examples/input-demo";
+import InputGroupDemo from "@component-library/ui/input-group/examples/input-group-demo";
 import InputStates from "@component-library/ui/input/examples/input-states";
 import KbdDemo from "@component-library/ui/kbd/examples/kbd-demo";
 import LabelDemo from "@component-library/ui/label/examples/label-demo";
@@ -43,6 +46,8 @@ export const examples: Record<string, Example> = {
   "card-demo": example(CardDemo, "card/examples/card-demo"),
   "card-small": example(CardSmall, "card/examples/card-small"),
   "checkbox-demo": example(CheckboxDemo, "checkbox/examples/checkbox-demo"),
+  "command-demo": example(CommandDemo, "command/examples/command-demo"),
+  "command-dialog-demo": example(CommandDialogDemo, "command/examples/command-dialog-demo"),
   "dialog-demo": example(DialogDemo, "dialog/examples/dialog-demo"),
   "dropdown-menu-checkboxes": example(
     DropdownMenuCheckboxes,
@@ -50,6 +55,7 @@ export const examples: Record<string, Example> = {
   ),
   "dropdown-menu-demo": example(DropdownMenuDemo, "dropdown-menu/examples/dropdown-menu-demo"),
   "input-demo": example(InputDemo, "input/examples/input-demo"),
+  "input-group-demo": example(InputGroupDemo, "input-group/examples/input-group-demo"),
   "input-states": example(InputStates, "input/examples/input-states"),
   "kbd-demo": example(KbdDemo, "kbd/examples/kbd-demo"),
   "label-demo": example(LabelDemo, "label/examples/label-demo"),

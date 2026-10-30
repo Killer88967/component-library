@@ -1,0 +1,21 @@
+export const metadata = {
+  title: "Input Group",
+  description: "An input or textarea with icons, text or buttons attached to it.",
+};
+
+<ComponentPreview name="input-group-demo" />
+
+## Usage
+
+```tsx
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@component-library/ui";
+
+<InputGroup>
+  <InputGroupInput placeholder="Search..." />
+  <InputGroupAddon>
+    <SearchIcon />
+  </InputGroupAddon>
+</InputGroup>;
+```
+
+`InputGroupAddon` takes an `align` of `inline-start` (default), `inline-end`, `block-start` or `block-end`.

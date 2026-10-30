@@ -7,12 +7,25 @@ const DOCS_DIR = path.join(process.cwd(), "src/content/docs");
 export interface DocMeta {
   title: string;
   description?: string;
+  /** Sort position inside its sidebar group. Docs without one sort by title after the rest. */
+  order?: number;
+}
+
+export interface NavItem {
+  title: string;
+  href: string;
 }
 
 export interface NavGroup {
   title: string;
-  items: { title: string; href: string }[];
+  items: NavItem[];
 }
+
+/** Sidebar groups, in display order. A doc's group is its first folder. */
+const GROUPS: Record<string, string> = {
+  "": "Getting Started",
+  components: "Components",
+};
 
 /** Every doc as a slug array; `index.mdx` files map to their folder. */
 export async function getDocSlugs(): Promise<string[][]> {
@@ -41,25 +54,40 @@ export async function getDoc(slug: string[]) {
 }
 
 export async function getNav(): Promise<NavGroup[]> {
-  const groups = new Map<string, NavGroup>();
+  const groups = new Map<string, (NavItem & { order: number })[]>();
 
   for (const slug of await getDocSlugs()) {
     const doc = await getDoc(slug);
     if (!doc) continue;
 
     const key = slug.length > 1 ? slug[0]! : "";
-    const title = key ? key.charAt(0).toUpperCase() + key.slice(1) : "Getting Started";
-    const group = groups.get(key) ?? { title, items: [] };
-
-    group.items.push({
+    const items = groups.get(key) ?? [];
+    items.push({
       title: doc.metadata.title,
       href: `/docs/${slug.join("/")}`.replace(/\/$/, ""),
+      order: doc.metadata.order ?? Number.POSITIVE_INFINITY,
     });
-    groups.set(key, group);
+    groups.set(key, items);
   }
 
-  return [...groups.values()].map((group) => ({
-    ...group,
-    items: group.items.sort((a, b) => a.title.localeCompare(b.title)),
-  }));
+  const keys = Object.keys(GROUPS);
+  return [...groups.entries()]
+    .sort(([a], [b]) => (keys.indexOf(a) + 1 || 99) - (keys.indexOf(b) + 1 || 99))
+    .map(([key, items]) => ({
+      title: GROUPS[key] ?? key.charAt(0).toUpperCase() + key.slice(1),
+      items: items
+        .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
+        .map(({ title, href }) => ({ title, href })),
+    }));
+}
+
+/** The docs before and after `href`, in sidebar order. */
+export async function getPager(href: string) {
+  const flat = (await getNav()).flatMap((group) => group.items);
+  const index = flat.findIndex((item) => item.href === href);
+
+  return {
+    prev: index > 0 ? flat[index - 1] : undefined,
+    next: index >= 0 ? flat[index + 1] : undefined,
+  };
 }

@@ -1,0 +1,35 @@
+export const metadata = {
+  title: "Command",
+  description: "A fast, searchable menu of commands, built on cmdk.",
+};
+
+<ComponentPreview name="command-demo" />
+
+## Usage
+
+```tsx
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@component-library/ui";
+
+<Command>
+  <CommandInput placeholder="Type a command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Calendar</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>;
+```
+
+## Dialog
+
+`CommandDialog` puts the menu in a dialog. Wrap its contents in `Command`. The search box at the top of this site uses it.
+
+<ComponentPreview name="command-dialog-demo" />

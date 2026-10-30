@@ -11,6 +11,17 @@ export {
 } from "./card/card";
 export { Checkbox } from "./checkbox/checkbox";
 export {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "./command/command";
+export {
   Dialog,
   DialogClose,
   DialogContent,
@@ -40,6 +51,14 @@ export {
   DropdownMenuTrigger,
 } from "./dropdown-menu/dropdown-menu";
 export { Input } from "./input/input";
+export {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "./input-group/input-group";
 export { Kbd, KbdGroup } from "./kbd/kbd";
 export { Label } from "./label/label";
 export {

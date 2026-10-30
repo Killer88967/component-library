@@ -7,9 +7,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dual-theme code blocks from Shiki */
-.dark .shiki,
+/* Shiki code blocks: the wrapper sets the background, colours follow the theme. */
+.shiki {
+  background-color: transparent !important;
+}
+
 .dark .shiki span {
   color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
 }
