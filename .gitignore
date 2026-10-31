@@ -8,3 +8,4 @@ next-env.d.ts
 !.env.example
 .DS_Store
 apps/www/src/lib/examples.generated.ts
+apps/www/public/r
