@@ -8,3 +8,7 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - lucide-react@1.64.0 || 1.65.0
   - react-resizable-panels@4.15.2 || 4.15.3
+
+permissions:
+  "@tanstack/react-table":
+    skills: false

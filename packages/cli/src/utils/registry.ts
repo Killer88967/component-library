@@ -1,0 +1,79 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
+export interface RegistryFile {
+  path: string;
+  type: "ui" | "hook" | "lib" | "css";
+  content: string;
+}
+
+export interface RegistryItem {
+  name: string;
+  type: "registry:ui" | "registry:hook" | "registry:lib" | "registry:style";
+  style: string;
+  description?: string;
+  dependencies: string[];
+  registryDependencies: string[];
+  files: RegistryFile[];
+}
+
+export interface RegistryIndex {
+  styles: string[];
+  items: { name: string; type: string; description?: string; registryDependencies: string[] }[];
+}
+
+/** Reads a registry JSON file from a URL, or from a folder (handy for local testing). */
+async function load<T>(registry: string, file: string): Promise<T> {
+  if (/^https?:\/\//.test(registry)) {
+    const url = `${registry.replace(/\/$/, "")}/${file}`;
+    let res: Response;
+    try {
+      res = await fetch(url);
+    } catch (error) {
+      throw new Error(`Couldn't reach the registry at ${url} (${(error as Error).message})`);
+    }
+    if (res.status === 404) throw new NotFoundError(file);
+    if (!res.ok) throw new Error(`Registry returned ${res.status} for ${url}`);
+    return (await res.json()) as T;
+  }
+  try {
+    return JSON.parse(await readFile(path.resolve(registry, file), "utf8")) as T;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") throw new NotFoundError(file);
+    throw error;
+  }
+}
+
+export class NotFoundError extends Error {
+  constructor(file: string) {
+    super(`"${file}" isn't in the registry`);
+  }
+}
+
+export const fetchIndex = (registry: string) => load<RegistryIndex>(registry, "index.json");
+
+export const fetchItem = (registry: string, style: string, name: string) =>
+  load<RegistryItem>(registry, `${style}/${name}.json`);
+
+/**
+ * Fetches the named items and everything they depend on, dependencies first,
+ * each item once.
+ */
+export async function resolveItems(registry: string, style: string, names: string[]) {
+  const ordered: RegistryItem[] = [];
+  const done = new Set<string>();
+  const visiting = new Set<string>();
+
+  const visit = async (name: string) => {
+    if (done.has(name) || visiting.has(name)) return;
+    visiting.add(name);
+    const item = await fetchItem(registry, style, name);
+    for (const dep of item.registryDependencies) await visit(dep);
+    visiting.delete(name);
+    done.add(name);
+    ordered.push(item);
+  };
+
+  for (const name of names) await visit(name);
+  return ordered;
+}

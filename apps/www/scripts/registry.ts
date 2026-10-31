@@ -3,6 +3,7 @@
 // Source of truth stays in packages/*; this only reads and repackages it.
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { createRequire } from "node:module";
 
 const ROOT = new URL("../../../", import.meta.url);
 const UI = new URL("packages/ui/src/", ROOT);
@@ -167,26 +168,51 @@ for (const dir of await readdir(UI, { withFileTypes: true })) {
   });
 }
 
-// init: what `cl init` writes for this style: theme variables + Tailwind mapping.
+// init: what `cl init` writes for this style. Separate files so the CLI can
+// skip the parts a project already has (e.g. shadcn's variables or variants).
 {
   const tokens = await readFile(new URL("packages/tokens/dist/tokens.css", ROOT), "utf8");
   const theme = (await readFile(new URL("packages/tokens/dist/theme.css", ROOT), "utf8")).replace(
     /^@import "\.\/tokens\.css";\n+/m,
     "",
   );
+  // shadcn's variants (data-open:, data-checked:...) and accordion keyframes,
+  // inlined so projects don't need the whole shadcn package for one CSS file.
+  const require = createRequire(new URL("packages/styles/package.json", ROOT));
+  const variants = await readFile(require.resolve("shadcn/tailwind.css"), "utf8");
+
   items.push({
     name: "init",
     type: "registry:style",
     style: STYLE,
     description: "Theme variables and the Tailwind setup every component expects.",
-    dependencies: ["tw-animate-css", "shadcn"].map((name) => `${name}@${versions[name]}`),
+    dependencies: [`tw-animate-css@${versions["tw-animate-css"]}`],
     registryDependencies: ["utils"],
     files: [
       { path: "cl-tokens.css", type: "css", content: tokens },
       {
+        path: "cl-variants.css",
+        type: "css",
+        content: `/* From shadcn/ui (MIT) - https://github.com/shadcn-ui/ui */\n${variants}`,
+      },
+      {
         path: "cl-theme.css",
         type: "css",
-        content: `@import "tw-animate-css";\n@import "shadcn/tailwind.css";\n\n${theme}`,
+        content:
+          [
+            `@import "tw-animate-css";`,
+            theme.trim(),
+            `@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}`,
+          ].join("\n\n") + "\n",
       },
     ],
   });
