@@ -1,21 +1,33 @@
 import { parseArgs } from "node:util";
 import * as p from "@clack/prompts";
 import { init } from "./commands/init.ts";
+import { add } from "./commands/add.ts";
 import { CliError } from "./utils/ui.ts";
 
 const HELP = `Usage: cl <command> [options]
 
 Commands
-  init            Set up cl.json, the theme and the cn() helper
+  init                Set up cl.json, the theme and the cn() helper
+  add [components...] Add components (pick from a list if none are named)
 
 Options
-  -c, --cwd       Project folder (default: current folder)
-  -y, --yes       Use the defaults, no questions
-  -f, --force     Overwrite an existing cl.json
-  --style         tailwind | css (default: detected)
-  --registry      Registry URL or folder
-  --skip-install  Don't install npm packages
-  -h, --help      Show this help`;
+  -c, --cwd           Project folder (default: current folder)
+  -y, --yes           Use the defaults, no questions
+  --skip-install      Don't install npm packages
+  -h, --help          Show this help
+
+init
+  -f, --force         Overwrite an existing cl.json
+  --style             tailwind | css (default: detected)
+  --registry          Registry URL or folder
+
+add
+  -a, --all           Add every component
+  -o, --overwrite     Replace files that already exist
+
+Examples
+  cl init
+  cl add button card dialog`;
 
 async function main() {
   const { positionals, values } = parseArgs({
@@ -24,6 +36,8 @@ async function main() {
       cwd: { type: "string", short: "c", default: process.cwd() },
       yes: { type: "boolean", short: "y", default: false },
       force: { type: "boolean", short: "f", default: false },
+      all: { type: "boolean", short: "a", default: false },
+      overwrite: { type: "boolean", short: "o", default: false },
       style: { type: "string" },
       registry: { type: "string" },
       "skip-install": { type: "boolean", default: false },
@@ -31,7 +45,7 @@ async function main() {
     },
   });
 
-  const [command] = positionals;
+  const [command, ...rest] = positionals;
   if (values.help || !command) return console.log(HELP);
 
   switch (command) {
@@ -43,6 +57,15 @@ async function main() {
         skipInstall: values["skip-install"],
         style: values.style,
         registry: values.registry,
+      });
+    case "add":
+      return add({
+        cwd: values.cwd,
+        names: rest,
+        yes: values.yes,
+        all: values.all,
+        overwrite: values.overwrite,
+        skipInstall: values["skip-install"],
       });
     default:
       throw new CliError(`Unknown command "${command}".\n\n${HELP}`);
